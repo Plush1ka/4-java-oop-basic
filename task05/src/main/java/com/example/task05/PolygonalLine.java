@@ -1,46 +1,58 @@
 package com.example.task05;
 
-/**
- * Ломаная линия
- */
 public class PolygonalLine {
 
-    /**
-     * Устанавливает точки ломаной линии
-     *
-     * @param points массив точек, которыми нужно проинициализировать ломаную линию
-     */
+    private Point[] points = new Point[0];
+
     public void setPoints(Point[] points) {
-        // TODO: реализовать
+
+        Point[] subPoint = new Point[points.length];
+
+        for (int i = 0; i < points.length; i++) {
+            Point newPoint = new Point(points[i].getX(), points[i].getY());
+            subPoint[i] = newPoint;
+        }
+        this.points = subPoint;
     }
 
-    /**
-     * Добавляет точку к ломаной линии
-     *
-     * @param point точка, которую нужно добавить к ломаной
-     */
     public void addPoint(Point point) {
-        // TODO: реализовать
+
+        int lenght = points.length;
+        Point[] subPoints = new Point[lenght + 1];
+
+        for (int i = 0; i < lenght; i++){
+            Point newPoint = new Point(points[i].getX(), points[i].getY());
+            subPoints[i] = newPoint;
+        }
+        subPoints[lenght] = point;
+
+        points = subPoints;
     }
 
-    /**
-     * Добавляет точку к ломаной линии
-     *
-     * @param x координата по оси абсцисс
-     * @param y координата по оси ординат
-     */
     public void addPoint(double x, double y) {
-        // TODO: реализовать
+
+        Point newPoint = new Point(x, y);
+
+        int lenght = points.length;
+        Point[] subPoints = new Point[lenght + 1];
+
+        for (int i = 0; i < lenght; i++){
+            subPoints[i] = points[i];
+        }
+        subPoints[lenght] = newPoint;
+
+        points = subPoints;
     }
 
-    /**
-     * Возвращает длину ломаной линии
-     *
-     * @return длину ломаной линии
-     */
     public double getLength() {
-        // TODO: реализовать
-        throw new AssertionError();
+
+        double summa = 0;
+
+        for (int i = 0; i < points.length - 1; i++){
+            summa += points[i].getLength(points[i+1]);
+        }
+
+        return summa;
     }
 
 }
