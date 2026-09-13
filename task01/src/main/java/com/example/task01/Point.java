@@ -1,5 +1,7 @@
 package com.example.task01;
 
+import static java.lang.Math.*;
+
 /**
  * Класс точки на плоскости
  */
@@ -8,16 +10,21 @@ public class Point {
     int y;
 
     public Point(int x, int y) {
-        // TODO: реализовать
-        throw new UnsupportedOperationException("Конструктор не реализован");
+        this.x = x;
+        this.y = y;
     }
 
     /**
      * "Вращает" точку относительно начала координат на 180 градусов
      */
     public void flip() {
-        // TODO: реализовать
-        throw new UnsupportedOperationException("Метод flip не реализован");
+
+        int subX;
+        x *= -1;
+        y *= -1;
+        subX = x;
+        x = y;
+        y = subX;
     }
 
     /**
@@ -27,13 +34,16 @@ public class Point {
      * @return расстояние между точками
      */
     public double distance(Point point) {
-        // TODO: реализовать
-        throw new UnsupportedOperationException("Метод distance не реализован");
+
+        double distance = sqrt(pow(point.x - x, 2) + pow(point.y - y, 2));
+        return distance;
     }
 
     @Override
     public String toString() {
-        // TODO: реализовать
-        throw new UnsupportedOperationException("Метод toString не реализован");
+
+        String xString = Long.toString(x);
+        String yString = Long.toString(y);
+        return "(" + xString + ", " + yString + ")";
     }
 }
